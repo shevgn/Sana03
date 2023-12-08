@@ -11,6 +11,10 @@ if (int.TryParse(Console.ReadLine(), out N))
     
     double sumNeg = 0;
 
+    double min = 9999;
+    double max = -9999;
+    var maxIndex = 0;
+    double maxModulo = -9999;
     for (int i = 0; i < N; i++)
     {
         array[i] = rand.NextDouble() * (MAX_VALUE - MIN_VALUE) + MIN_VALUE;
@@ -20,8 +24,28 @@ if (int.TryParse(Console.ReadLine(), out N))
         {
             sumNeg += array[i];
         }
+
+        if (array[i] < min)
+        {
+            min = array[i];
+        }
+
+        if (array[i] > max)
+        {
+            max = array[i];
+            maxIndex = i;
+        }
+
+        if (Math.Abs(array[i]) > maxModulo)
+        {
+            maxModulo = array[i];
+        }
+
     }
 
     Console.WriteLine("Sum of negative elements: {0:N3}", sumNeg);
+    Console.WriteLine("Min element: {0:N3}", min);
+    Console.WriteLine("Max element index: " + maxIndex);
+    Console.WriteLine("Maximum by module: {0:N3}", maxModulo);
 
 }
